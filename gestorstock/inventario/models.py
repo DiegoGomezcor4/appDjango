@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Proveedor(models.Model):
-    nombre = models.Charfield(max_length=100)
+    nombre = models.CharField(max_length=100)
     contacto = models.CharField(max_length=100, blank=True)
     telefono = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
@@ -23,10 +23,10 @@ class Producto(models.Model):
         return self.nombre
 
 class Compra(models.Model):
-    producto = models.ForeignKey(Producto, on_detele=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     fecha = models.DateField(auto_now_add=True)
-    proveedor = model.ForeignKey(Proveedor, on_delete=models.SET_NULL, null=True, blank=True)
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.SET_NULL, null=True, blank=True)
     precio_compra = models.DecimalField(max_digits=10, decimal_places=2)
     
     def __str__(self):

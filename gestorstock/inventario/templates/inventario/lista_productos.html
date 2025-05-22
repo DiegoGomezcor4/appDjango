@@ -1,0 +1,38 @@
+<!-- inventario/templates/inventario/lista_productos.html-->
+ <!DOCTYPE html>
+ <html>
+    <head>
+        <title>Stock de Productos</title>
+        <style>
+            body { font-family: sans-serif;}
+            .bajo-stock {color: red; font-weight: bold;}
+        </style>
+    </head>
+    <body>
+        <h1>Lista de Productos</h1>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Nombre</th>
+                <th>Stock actual</th>
+                <th>Stock minimo</th>
+                <th>Estado</th>
+            </tr>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.stock_actual }}</td>
+                <td>{{ producto.stock_minimo }}</td>
+                <td>
+                    {% if producto.stock_actual <= producto.stock_minimo %}
+                        <span class="bajo-stock">⚠ Bajo stock </span>
+                    {% else %}
+                       ✅ ok
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No hay productos cargados.</td></tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>       
