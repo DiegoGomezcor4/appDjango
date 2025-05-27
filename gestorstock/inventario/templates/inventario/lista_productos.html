@@ -32,6 +32,7 @@
                        ✅ ok
                     {% endif %}
                 </td>
+                
                 <td>
                     {% with producto.proveedores.all as lista_proveedores %}
                         {% if lista_proveedores %}
@@ -39,14 +40,18 @@
                                 {{ prov.nombre }}{% if not forloop.last %}, {% endif %}
                             {% endfor %}
                         {% else %}
-                            <em>Sin proveedor</em>
+                            <em>Sin proveedores</em>
                         {% endif %}
                     {% endwith %}
                 </td>
+                
             </tr>
             {% empty %}
             <tr><td colspan="4">No hay productos cargados.</td></tr>
             {% endfor %}
         </table>
+
+
+
     </body>
 </html>       

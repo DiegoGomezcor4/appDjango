@@ -18,7 +18,7 @@ class Producto(models.Model):
     stock_actual = models.PositiveIntegerField(default=0)
     stock_minimo = models.PositiveIntegerField(default=10)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    proveedores = models.ManyToManyField(Proveedor, blank=True)
+    proveedores = models.ManyToManyField(Proveedor, related_name='productos')
 
     
     def __str__(self):
