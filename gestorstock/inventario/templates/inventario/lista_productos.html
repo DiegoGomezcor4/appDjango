@@ -12,13 +12,16 @@
         <h1>Lista de Productos</h1>
         <table border="1" cellpadding="8">
             <tr>
+                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Stock actual</th>
                 <th>Stock minimo</th>
                 <th>Estado</th>
+                <th>Proveedor</th>
             </tr>
             {% for producto in productos %}
             <tr>
+                <td>{{producto.codigo}}</td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.stock_actual }}</td>
                 <td>{{ producto.stock_minimo }}</td>
@@ -28,6 +31,17 @@
                     {% else %}
                        ✅ ok
                     {% endif %}
+                </td>
+                <td>
+                    {% with producto.proveedores.all as lista_proveedores %}
+                        {% if lista_proveedores %}
+                            {% for prov in lista_proveedores %}
+                                {{ prov.nombre }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <em>Sin proveedor</em>
+                        {% endif %}
+                    {% endwith %}
                 </td>
             </tr>
             {% empty %}
